@@ -1,0 +1,73 @@
+# Model Configuration
+model:
+  input_shape: [28, 28, 1]
+  num_classes: 10
+  cut_layer: 2
+  hidden_size: 128
+  compression_type: "none"  # none, quantization, pruning, distillation
+
+# Training Configuration
+training:
+  epochs: 10
+  batch_size: 64
+  learning_rate: 0.001
+  weight_decay: 1e-4
+  optimizer: "adam"
+  scheduler: "cosine"
+  early_stopping:
+    patience: 5
+    min_delta: 0.001
+
+# Data Configuration
+data:
+  dataset_name: "mnist"  # mnist, synthetic, streaming, edge
+  data_dir: "./data"
+  normalize: true
+  augment: false
+  num_workers: 4
+
+# Device Configuration
+device:
+  device: "auto"  # auto, cpu, cuda, mps
+  mixed_precision: false
+  compile_model: false
+
+# Compression Configuration
+compression:
+  quantization:
+    bits: 8
+    calibration_samples: 100
+  pruning:
+    sparsity: 0.5
+    method: "magnitude"
+  distillation:
+    temperature: 3.0
+    alpha: 0.7
+
+# Evaluation Configuration
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1_score", "latency", "throughput", "memory_usage"]
+  num_warmup: 10
+  num_iterations: 100
+  include_edge_metrics: true
+
+# Communication Configuration
+communication:
+  simulate_delay: true
+  delay_ms: 10
+  packet_loss_rate: 0.0
+  bandwidth_limit: null  # bytes per second
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  log_file: null
+  log_interval: 100
+
+# Output Configuration
+output:
+  save_model: true
+  save_results: true
+  results_dir: "./results"
+  model_dir: "./models"
+  assets_dir: "./assets"

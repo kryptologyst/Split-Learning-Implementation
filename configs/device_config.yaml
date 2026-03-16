@@ -1,0 +1,85 @@
+# Device-specific configurations for edge deployment
+
+# Raspberry Pi Configuration
+raspberry_pi:
+  device: "cpu"
+  architecture: "arm64"
+  memory_limit: 1024  # MB
+  power_limit: 5.0    # Watts
+  thermal_limit: 70    # Celsius
+  optimization:
+    quantization_bits: 8
+    pruning_sparsity: 0.7
+    batch_size: 16
+    num_workers: 2
+
+# Jetson Nano Configuration
+jetson_nano:
+  device: "cuda"
+  architecture: "arm64"
+  memory_limit: 4096  # MB
+  power_limit: 10.0   # Watts
+  thermal_limit: 80   # Celsius
+  optimization:
+    quantization_bits: 8
+    pruning_sparsity: 0.5
+    batch_size: 32
+    num_workers: 4
+    tensorrt: true
+
+# Android Configuration
+android:
+  device: "cpu"
+  architecture: "arm64"
+  memory_limit: 512   # MB
+  power_limit: 2.0   # Watts
+  thermal_limit: 60  # Celsius
+  optimization:
+    quantization_bits: 8
+    pruning_sparsity: 0.8
+    batch_size: 8
+    num_workers: 1
+    coreml: true
+
+# iOS Configuration
+ios:
+  device: "cpu"
+  architecture: "arm64"
+  memory_limit: 512   # MB
+  power_limit: 2.0   # Watts
+  thermal_limit: 60  # Celsius
+  optimization:
+    quantization_bits: 8
+    pruning_sparsity: 0.8
+    batch_size: 8
+    num_workers: 1
+    coreml: true
+
+# MCU Configuration (STM32, Arduino)
+mcu:
+  device: "cpu"
+  architecture: "arm32"
+  memory_limit: 64    # MB
+  power_limit: 0.5    # Watts
+  thermal_limit: 50   # Celsius
+  optimization:
+    quantization_bits: 4
+    pruning_sparsity: 0.9
+    batch_size: 1
+    num_workers: 1
+    tflite: true
+
+# Edge TPU Configuration
+edge_tpu:
+  device: "cpu"
+  architecture: "arm64"
+  memory_limit: 1024  # MB
+  power_limit: 2.0    # Watts
+  thermal_limit: 60   # Celsius
+  optimization:
+    quantization_bits: 8
+    pruning_sparsity: 0.6
+    batch_size: 16
+    num_workers: 2
+    tflite: true
+    edge_tpu: true
